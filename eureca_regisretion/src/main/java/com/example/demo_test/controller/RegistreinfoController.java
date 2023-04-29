@@ -1,6 +1,8 @@
 package com.example.demo_test.controller;
 
 import com.example.demo_test.model.PhoneModel;
+import com.example.demo_test.resttemplate.RestTemplateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,15 +13,18 @@ import static com.example.demo_test.controller.ConstantSheet.SAVE_NUM;
 @RestController
 public class RegistreinfoController {
 
-
-    @PostMapping(SAVE_NUM)
-    public String saveNum(@RequestBody PhoneModel phoneModel) {
-        return phoneModel.toString();
-    }
+    @Autowired
+    public RestTemplateService restTemplateService;
 
     @GetMapping("/get")
     public String getRes() {
         return "hello!";
+    }
+
+    @PostMapping(SAVE_NUM)
+    public String saveNum(@RequestBody PhoneModel phoneModel) {
+        String saveNewNumber = restTemplateService.saveNewNumber(phoneModel);
+        return saveNewNumber;
     }
 
 }

@@ -21,6 +21,11 @@ public class RegistreinfoController {
         return "hello!";
     }
 
+    @GetMapping("/get2")
+    public String getResTwo() {
+        return "hello hello";
+    }
+
     @PostMapping(SAVE_NUM)
     public String saveNum(@RequestBody PhoneModel phoneModel) {
         String saveNewNumber = restTemplateService.saveNewNumber(phoneModel);
